@@ -22,7 +22,10 @@ DB_DATABASE=xemaymeta
 DB_USERNAME=root
 DB_PASSWORD=matkhau
 ```
-
+- Nếu chưa có key thì chạy câu lệnh
+```
+php artisan key:generate
+```
 ## Step 3: Tạo database, thực hiện migrate
 - Tạo database xemaymeta, chuẩn bảng mã `utf8mb4_unicode_ci`
 - Thực thi câu lệnh khởi tạo cấu trúc bảng
