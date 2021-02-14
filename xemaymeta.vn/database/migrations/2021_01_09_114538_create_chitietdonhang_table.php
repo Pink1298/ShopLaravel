@@ -23,6 +23,7 @@ class CreateChitietdonhangTable extends Migration
             $table->timestamp('chitietdh_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo chi tiết đơn hàng');
             $table->timestamp('chitietdh_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật chi tiết đơn hàng gần nhất');
             
+            $table->primary(['donhang_ma', 'xe_ma']);
             $table->foreign('donhang_ma')->references('donhang_ma')->on('donhang')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('xe_ma')->references('xe_ma')->on('xe')->onDelete('CASCADE')->onUpdate('CASCADE');
         

@@ -21,7 +21,7 @@ class CreateLoaixeTable extends Migration
             $table->timestamp('loai_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo loại xe');
             $table->timestamp('loai_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật loại xe gần nhất');
             
-            $table->unique(['loai_ten']);
+            $table->unique(['loai_ma', 'loai_ten']);
         });
     }
 

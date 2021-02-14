@@ -26,6 +26,7 @@ class CreateChitietkmTable extends Migration
             $table->timestamp('chitietkm_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo chi tiết khuyến mãi');
             $table->timestamp('chitietkm_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật chi tiết khuyến mãi gần nhất');
             
+            $table->primary(['khuyenmai_ma', 'xe_ma']);
             $table-> foreign('khuyenmai_ma')->references('khuyenmai_ma')->on('khuyenmai')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table-> foreign('xe_ma')->references('xe_ma')->on('xe')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
