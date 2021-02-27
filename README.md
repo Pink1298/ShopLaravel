@@ -2,7 +2,7 @@
 Đồ án website thương mại điện tử bán xe máy xemaymeta.vn
 
 # Thông tin về Tác giả
-Mã sinh viên: 678
+Mã sinh viên: D20214
 Họ tên: Trần Thị Huỳnh Hoa
 
 # Hướng dẫn cách sử dụng dự án
