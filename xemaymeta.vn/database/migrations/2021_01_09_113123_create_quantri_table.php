@@ -16,7 +16,7 @@ class CreateQuantriTable extends Migration
         Schema::create('quantri', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->string('quantri_taiKhoan', 50)->comment('Tài khoản quản trị');
-            $table->string('quantri_matKhau', 50)->comment('Mật khẩu quản trị');
+            $table->string('quantri_matKhau')->comment('Mật khẩu quản trị');
 
             $table->timestamp('quantri_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo tài khoản quản trị');
             $table->timestamp('quantri_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật tài khoản gần nhất');

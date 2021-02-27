@@ -1,199 +1,85 @@
-<header class="header-v4">
-    <!-- Header desktop -->
-    <div class="container-menu-desktop">
-        <!-- Topbar -->
-        <div class="top-bar">
-            <div class="content-topbar flex-sb-m h-full container">
-                <div class="left-top-bar">
-                    Free shipping for standard order over $100
-                </div>
-
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
-
-                    <a href="{{ route('app.setLocale', ['locale' => 'en']) }}" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="{{ route('app.setLocale', ['locale' => 'vi']) }}" class="flex-c-m trans-04 p-lr-25">
-                        VI
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="wrap-menu-desktop">
-            <nav class="limiter-menu-desktop container">
-
-                <!-- Logo desktop -->
-                <a href="" class="logo">
-                    <img src="{{ asset('themes/cozastore/images/icons/logo-01.png') }}" alt="IMG-LOGO">
-                </a>
-
-                <!-- Menu desktop -->
-                <div class="menu-desktop">
-                    <ul class="main-menu">
-                        <li class="{{ Request::is('') ? 'active-menu' : '' }}">
-                            <a href="{{ route('frontend.home') }}">Trang chủ</a>
-                        </li>
-
-                        <li class="{{ Request::is('san-pham') ? 'active-menu' : '' }}">
-                            <a href="{{ route('frontend.product') }}">Sản phẩm</a>
-                        </li>
-
-                        <li class="{{ Request::is('gioi-thieu') ? 'active-menu' :   '' }}">
-                            <a href="{{ route('frontend.about') }}">Giới thiệu</a>
-                        </li>
-
-                        <li class="{{ Request::is('lien-he') ? 'active-menu' : '' }}">
-                            <a href="{{ route('frontend.contact') }}">Liên hệ</a>
-                        </li>
-
-                        <li class="{{ Request::is('admin') ? 'active-menu' : '' }}">
-                            <a href="{{ route('backend.dashboard') }}">Quản trị</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Icon header -->
-                <div class="wrap-icon-header flex-w flex-r-m">
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                        <i class="zmdi zmdi-search"></i>
-                    </div>
-
-                    <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                        <i class="zmdi zmdi-shopping-cart"></i>
-                    </div> -->
-                    <!-- Hiển thị nút summart cart -->
-                    <ngcart-summary class="js-show-cart" template-url="{{ asset('vendor/ngCart/template/ngCart/summary.html') }}"></ngcart-summary>
-
-                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-                        <i class="zmdi zmdi-favorite-outline"></i>
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Header Mobile -->
-    <div class="wrap-header-mobile">
-        <!-- Logo moblie -->
-        <div class="logo-mobile">
-            <a href="index.html"><img src="{{ asset('themes/cozastore/images/icons/logo-01.png') }}" alt="IMG-LOGO"></a>
-        </div>
-
-        <!-- Icon header -->
-        <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                <i class="zmdi zmdi-search"></i>
-            </div>
-
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-                <i class="zmdi zmdi-shopping-cart"></i>
-            </div>
-
-            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-                <i class="zmdi zmdi-favorite-outline"></i>
-            </a>
-        </div>
-
-        <!-- Button show menu -->
-        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </div>
-    </div>
-
-
-    <!-- Menu Mobile -->
-    <div class="menu-mobile">
-        <ul class="topbar-mobile">
-            <li>
-                <div class="left-top-bar">
-                    Free shipping for standard order over $100
-                </div>
-            </li>
-
-            <li>
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        Help & FAQs
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        USD
-                    </a>
-                </div>
-            </li>
-        </ul>
-
-        <ul class="main-menu-m">
-            <li>
-                <a href="index.html">Home</a>
-                <ul class="sub-menu-m">
-                    <li><a href="index.html">Homepage 1</a></li>
-                    <li><a href="home-02.html">Homepage 2</a></li>
-                    <li><a href="home-03.html">Homepage 3</a></li>
-                </ul>
-                <span class="arrow-main-menu-m">
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </span>
-            </li>
-
-            <li>
-                <a href="#">Shop</a>
-            </li>
-
-            <li>
-                <a href="#" class="label1 rs1" data-label1="hot">Features</a>
-            </li>
-
-            <li>
-                <a href="#">Blog</a>
-            </li>
-
-            <li>
-                <a href="#">About</a>
-            </li>
-
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Modal Search -->
-    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <div class="container-search-header">
-            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                <img src="{{ asset('themes/cozastore/images/icons/icon-close2.png') }}" alt="CLOSE">
-            </button>
-
-            <form class="wrap-search-header flex-w p-l-15">
-                <button class="flex-c-m trans-04">
-                    <i class="zmdi zmdi-search"></i>
-                </button>
-                <input class="plh3" type="text" name="search" placeholder="Search...">
-            </form>
-        </div>
-    </div>
-</header>
+<div class="wrapper_container">
+<div class="container">
+	<div class="row">
+	  <div class="mi" style=" width:32%" data-toggle="tooltip" title data-html="true" data-original-title="LUÔN VỮNG TIN<br>LUÔN ĐỔI MỚI<br>LUÔN LẮNG NGHE" data-placement="bottom"><img class="icon" src="{{ asset('') }}Image/light.png"/>Uy tín - Nhanh nhẹn - Thân thiện</div>
+  		<div class="mi" style=" width:23%"data-toggle="tooltip" title data-html="true" data-original-title="Nhận hàng trong 7 ngày<br>Miễn phí giao hàng toàn quốc<br>Thanh toán khi nhận hàng" data-placement="bottom"><img class="icon" src="{{ asset('') }}Image/truck.png"/>giao hàng toàn quốc</div>
+	  <div class="mi" style=" width:26%" data-toggle="tooltip" title data-html="true" data-original-title="Liên hệ tổng đài<br />035399xxxx<br>Hoạt động từ 8:30 - 20:00" data-placement="bottom"><img class="icon" src="{{ asset('') }}Image/phone.png"/>chăm sóc khách hàng</div>
+  		<div class="mi" style=" width:13%" data-toggle="tooltip" title data-html="true" data-original-title="36 Trần Văn Nghiêm <br>TP Cần Thơ" data-placement="bottom"><img class="icon" src="{{ asset('') }}Image/map.png"/>địa chỉ</div>
+	</div>
+</div>
+<hr class="ke"/>
+<table width="1004px" cellspacing="0" cellpadding="0" class="r2">
+  <tr>
+    <td width="304px" rowspan="2" style="background:#007671"><div class="logo"><a href="/"><img src="{{ asset('image/logoMeta.png') }}" width="304" height="140" /></a>
+</div></td>
+    <td colspan="5" valign="top" width="700px">
+    <ul id="main_menu">
+    <li><a href="/" ><img src="{{ asset('image/home.png') }}" class="icon-menu">Trang chủ</a></li>
+    
+    
+                            <li class="down"><a><img src="{{ asset('image/motor.png') }}" class="icon-menu">sản phẩm</a>
+                            @if(!$listhang->isEmpty())
+                                <ul class="sub_menu">                            
+                                    @foreach($listhang as $hang)
+                                    @php
+                                        $coloaixe = false
+                                    @endphp
+                                    <li><a href="index.php?b=hang&id='.$t1.'"><img src="{{ asset('image/'.$hang->hangxe_logo) }}" class="logohanghd">{{ $hang->hangxe_ten }}</a> 
+                                        @foreach($listloaixe as $loaixe)
+                                            @if($hang->hangxe_ma == $loaixe->hangxe_ma)                                                
+                                                @php
+                                                    $coloaixe = true
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        @if($coloaixe)
+                                            <ul class="sub_menu">
+                                            @foreach($listloaixe as $loaixe)
+                                                @if($hang->hangxe_ma == $loaixe->hangxe_ma)
+                                                    <li><a href="index.php?b=loai&id='.$t1.'&loaixe='.$t2.'">{{$loaixe->loai_ma}}</a></li>
+                                                @endif
+                                            @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            @endif                         
+    </li>
+      
+      
+      
+        <li class="down"><a href="" ><img src="{{ asset('image/event.png') }}" class="icon-menu">  Tin tức</a>
+                                  <ul class="sub_menu">
+                                        <li><a href="">Sự kiện</a></li>
+                                        <li><a href="">Khuyến mãi</a></li>
+          </ul>
+      </li>
+        <li class="down"><a href="" ><img src="{{ asset('image/service.png') }}" class="icon-menu">  Hỗ trợ</a>
+                                  <ul class="sub_menu">
+                                        <li><a href="">Liên hệ</a></li>
+                                        <li><a href="">Góp ý</a></li>
+          </ul>    
+      </li>
+        
+            		<li><a href="index.php?b=dn"><img src="{{ asset('image/guest.png') }}" class="icon-menu">đăng nhập</a>
+                    	<ul class="sub_menu">
+                        				<li class="register"><a href="index.php?b=dk">ĐĂNG KÝ</a></li>
+                        </ul>            
+        </li>
+  </ul>
+  </td>
+    </tr>
+  <tr >
+    <td width="387px">
+<div id="s"><form action="index.php?b=tk" method="get" name="seach" >
+<input type="hidden" name="b" value="tk" />
+<input type="text" id="key" name="key" placeholder="Tìm kiếm xe"/>
+</form></div></td>
+    <td width="50px" align="center"><img src="{{ asset('image/order.png') }}" class="iconr"/></td>
+    <td width="122px"><p><a href="index.php?b=ttdh" class="linkr"><b><BR>TÌNH TRẠNG<BR />ĐƠN HÀNG</b></a></td>
+    <td width="51px" align="center"><img src="{{ asset('image/cart.png') }}" class="iconr"/></td>
+    <td width="91px"><p><a href="/cart/" class="linkr"><b><BR>CHI TIẾT<br />GIỎ HÀNG</b></a></td>
+  </tr>
+</table>
+</div>

@@ -1,114 +1,185 @@
-<div class="container">
-    <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-        <button class="how-pos3 hov3 trans-04 js-hide-modal" data-sp-ma="{{ $sp->sp_ma }}">
-            <img src="{{ asset('themes/cozastore/images/icons/icon-close.png') }}" alt="CLOSE">
-        </button>
-
-        <div class="row">
-            <div class="col-md-6 col-lg-7 p-b-30">
-                <div class="p-l-25 p-r-30 p-lr-0-lg">
-                    <div class="wrap-slick3 flex-sb flex-w">
-                        <div class="wrap-slick3-dots"></div>
-                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-                        <div class="slick3 gallery-lb">
-                            <div class="item-slick3" data-thumb="{{ asset('storage/photos/' . $sp->sp_hinh) }}">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" alt="IMG-PRODUCT">
-
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('storage/photos/' . $sp->sp_hinh) }}">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <?php
-                            // Lọc các hình ảnh liên quan đến sản phẩm
-                            $id = $sp->sp_ma;
-                            $hinhanhlienquan = $hinhanhlienquan->toArray();
-                            $filteredItems = array_filter($hinhanhlienquan, function ($item) use ($id) {
-                                return $item->sp_ma == $id;
-                            });
-                            ?>
-                            @foreach($filteredItems as $hinhanh)
-                            <div class="item-slick3" data-thumb="{{ asset('storage/photos/' . $hinhanh->ha_ten) }}">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="{{ asset('storage/photos/' . $hinhanh->ha_ten) }}" alt="IMG-PRODUCT">
-
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('storage/photos/' . $hinhanh->ha_ten) }}">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                </div>
-                            </div>
+<div class="nav">
+		<div class="show">
+			<table class="tbshow"border="0" cellpadding="0" cellspacing="0">
+            <tr><td colspan="4" class="tlhang"><a href="?b=hang&id=mah"><b><img src="{{asset('image/'.$xe->hangxe_logo)}}" class="logohang"/>{{$xe->hangxe_ten}}</B></a></td></tr>	
+            <tr><td colspan="4" ><b class="tlloai">{{$xe->xe_ten}}</b></td></tr>
+            <tr><td colspan="4"><img src="{{asset('storage/xe/'.$xe->hinhanhct_hinh)}}" class="banner" id="banner"/></td></tr>
+            <tr><td colspan="4" ><b class="tlloai">MÀU SẮC</b></td></tr>
+            <tr class="fixed-price">
+                <td colspan="2">
+                    <div class="slidect">
+                        @php
+                            $i = 1
+                        @endphp
+                        @foreach($mausac as $mau)                        
+                            <input type="radio" name="imgmain" id="img{{$i}}" checked="checked"/>
+                            <label for="img{{$i}}"><img src="{{asset('storage/xe/'.$mau->hinhanhct_hinh)}}" width="90px" height="60px" /></label>
+                            <img src="{{asset('storage/xe/'.$mau->hinhanhct_hinh)}}" width="540px" height="340px"/>
+                        @php
+                            $i++
+                        @endphp
+                        @endforeach
+                    </div>
+                </td>
+                <td colspan="2">
+                        <table class="htgia">
+                            <tr><td><b class="tento">{{$xe->xe_ten}}<b></td></tr>
+                            <tr>
+                                <td>
+                                    @if($xe->phantramgiamgia == 0)
+                                        <b class='giato'><b class='to'></b><br>{{number_format($xe->xe_gia,0,'','.')}}<sup>đ</sup></b>
+                                    @else
+                                        <b class='giato'><b class='to'><strike>{{number_format($xe->xe_gia,0,'','.')}}</strike><sup>vnđ</sup></b>
+                                <br>{{number_format($xe->xe_gia*(100-$xe->phantramgiamgia)/100,0,'','.')}}<sup>vnđ</sup><br><b class='km'>KHUYẾN MÃI ĐẾN {{date('d/m',strtotime($xe->tgketthuc))}}</b></b>
+                                    @endif
+                                </td>
+                            </tr>
+                        <tr><td><a class="btdathang" href="/cart/add/{{$xe->xe_ma}}"><b>ĐẶT HÀNG</b></a></td></tr>
+                        </table>
+                </td>
+            </tr>
+            <tr><td colspan="4" ><b class="tlloai">ĐẶC TÍNH</b></td></tr>
+            <tr>
+                <td colspan="3">
+                        <div id="slidemain">   
+                            @php
+                                $i = 1
+                            @endphp  
+                            @foreach($dactinh as $dt)                    
+                            <input type="radio" id="image{{$i}}" name="slide" class="inpu" checked/>
+                            <label for="image{{$i}}" class="labe" id="button{{$i}}"></label>
+                        <h1 id="text{{$i}}"><b>{{$dt->motaha_tieuDe}}</b><br/>{{$dt->motaha_noiDung}}</h1>
+                            @php
+                                $i++
+                            @endphp
                             @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-5 p-b-30">
-                <div class="p-r-50 p-t-5 p-lr-0-lg">
-                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                        <a href="{{ route('frontend.productDetail', ['id' => $sp->sp_ma]) }}">{{ $sp->sp_ten }}</a>
-                    </h4>
-
-                    <span class="mtext-106 cl2">
-                        {{ $sp->sp_giaBan }}
-                    </span>
-
-                    <p class="stext-102 cl3 p-t-23">
-                        {{ $sp->sp_thongTin }}
-                    </p>
-
-                    <!--  -->
-                    <div class="p-t-33">
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-203 flex-c-m respon6">
-                                Màu sắc
-                            </div>
-
-                            <div class="size-204 respon6-next">
-                                <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
-                                        <option>Chọn màu</option>
-                                        @foreach($danhsachmau as $mau)
-                                        <option value="{{ $mau->m_ma }}">{{ $mau->m_ten }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
+                            <div id="slide_wrap2">
+                                @foreach($dactinh as $dt)   
+                                    <img src="{{asset('storage/xe/'.$dt->hinhanhct_hinh)}}" width="490" height="340" />
+                                @endforeach
                             </div>
                         </div>
-
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-204 flex-w flex-m respon6-next">
-                                <ngcart-addtocart template-url="{{ asset('vendor/ngCart/template/ngCart/addtocart.html') }}" id="{{ $sp->sp_ma }}" name="{{ $sp->sp_ten }}" price="{{ $sp->sp_giaBan }}" quantity="1" quantity-max="30" data="{ sp_hinh_url: '{{ asset('storage/photos/' . $sp->sp_hinh) }}' }">Thêm vào giỏ hàng</ngcart-addtocart>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--  -->
-                    <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                        <div class="flex-m bor9 p-r-10 m-r-11">
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                                <i class="zmdi zmdi-favorite"></i>
-                            </a>
-                        </div>
-
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                        <table class="tskt">
+                                <tr>
+                                    <td colspan="2" class="tittt"><b>Thông số kỹ thuật</b></td>
+                                </tr>
+                                <tr class="w">
+                                    <td align="left" valign="middle" width="380">Loại động cơ</td>
+                                    <td align="left" valign="middle" width="320">{{ $tskt->thongso_dongCo }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Dung tích xy-lanh</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_xyLanh }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Đường kính và hành trình pittong</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_pitTong }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Tỷ số nén</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_tsNen }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Công suất tối đa</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_congSuat }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Mo-men cực đại</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_momen }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Hệ thống khởi động</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_khoiDong }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Hệ thống truyền động</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_truyenDong }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Dung tích nhớt máy</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_nhot }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Dung tích bình xăng</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_xang }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Kích cỡ lốp</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_lopXe }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Hệ thống phanh</td>
+                                        <td align="left" valign="middle">{{ $tskt->thongso_phanhXe }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Hệ thống giảm xóc</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_phuocXe }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Kích thước (dài x rộng x cao)</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_kichThuoc }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Độ cao yên xe</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_yenXe }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Khoảng cách giữa 2 trục bánh xe</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_kc2banh }}</td>
+                                </tr>
+                                    <tr class="w">
+                                        <td align="left" valign="middle">Độ cao gầm xe</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_gamXe }}</td>
+                                </tr>
+                                    <tr class="g">
+                                        <td align="left" valign="middle">Trọng lượng</td>
+                                    <td align="left" valign="middle">{{ $tskt->thongso_trongLuong }}</td>
+                                </tr>
+                            </table>
+                      </td>
+                </tr>
+                <tr><td colspan="4"><hr class="key2"></td></tr>
+       			<tr><td colspan="4" style="font-size:24px; color:#d50000; text-indent:50px; padding-top:20px" align="left">Các dòng xe tương đồng:</td></tr>
+                <tr style="display: block">
+                    @php
+                        $stt = 1
+                    @endphp                
+                        @foreach($tuongtu as $xe)
+                                                
+                            @if($stt==9)
+                                break;
+                            @elseif($stt%4==1 && $stt>1)
+                                </tr><tr>
+                            @endif
+                                    <td class="sp">
+                                    <a href="/product/{{$xe->xe_ma}}">
+                                        @if($xe->phantramgiamgia == 0)
+                                            <br><b>{{number_format($xe->xe_gia,0,'','.')}}<sup>đ</sup></b><br>
+                                        @else
+                                            <b><strike class='giamgia'>{{number_format($xe->xe_gia,0,'','.')}}</strike><sup>đ</sup>
+                                            <br>{{number_format($xe->xe_gia*(100-$xe->phantramgiamgia)/100,0,'','.')}}<sup>đ</sup></b><br>
+                                        @endif
+                                        <img src="{{asset('storage/xe/'.$xe->hinhanhct_hinh)}}" height="170px" width="190px" />
+                                        <br><b>{{$xe->xe_ten}}</b></a>
+                                    </td>
+                    
+                            @php
+                                $stt++
+                            @endphp  
+                        @endforeach
+                        @if(($stt-1)%4>0)
+                            @php
+                                $n = 4 - ($stt-1)%4                            
+                            @endphp
+                            @for($i = 0; $i < $n; $i++)
+                                <td></td>
+                            @endfor
+                        @endif
+                </tr>
+        </table>
     </div>
 </div>
